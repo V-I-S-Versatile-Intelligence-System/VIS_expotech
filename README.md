@@ -48,4 +48,12 @@ Acreditamos que o futuro das residências não está apenas em possuir dispositi
 
 Your Home, Your Intelligence, Your Future.
 
-Desenvolvido com dedicação pela equipe V.I.S. para a ExpoTech 2026.2.
+Desenvolvido com dedicação pela equipe V.I.S:
+
+204063 - Samuel Santos da Silva 
+270703 - Maria Eduarda Salustiano
+279718 - Rafael Benetti Belchior
+299288 - Joao Pedro Pereira Sales dos Santos
+118578 - Nicolas Costa
+
+Para a ExpoTech 2026.2.
