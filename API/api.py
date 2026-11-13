@@ -4,13 +4,12 @@ import core
 app = Flask(__name__)
 
 
-# ver o estado
+
 @app.route("/estado", methods=["GET"])
 def pegar_estado():
     return jsonify({"temperatura": core.temperatura, "alarme": core.alarme, "porta": core.porta})
 
 
-# mudar a temperatura
 @app.route("/temperatura", methods=["POST"])
 def mudar_temperatura():
     dados = request.get_json()
@@ -18,7 +17,6 @@ def mudar_temperatura():
     return jsonify({"ok": True})
 
 
-# ligar/desligar o alarme
 @app.route("/alarme", methods=["POST"])
 def mudar_alarme():
     dados = request.get_json()
@@ -26,7 +24,6 @@ def mudar_alarme():
     return jsonify({"ok": True})
 
 
-# abrir/fechar a porta
 @app.route("/porta", methods=["POST"])
 def mudar_porta():
     dados = request.get_json()
