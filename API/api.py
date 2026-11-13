@@ -3,7 +3,6 @@ import core
 
 app = Flask(__name__)
 
-# Mostrar estado da casa
 @app.route("/estado", methods=["GET"])
 def estado():
     return jsonify({
