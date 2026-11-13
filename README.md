@@ -30,11 +30,11 @@ Tecnologias utilizadas:
 
 As tecnologias utilizadas no desenvolvimento do V.I.S. permitem integrar diferentes componentes e automatizar processos.
 
-Tecnologia	Aplicação
-Python	Desenvolvimento e lógica do sistema
-n8n	Automação de processos
-FastAPI	Integração entre sistemas
-GitHub	Versionamento e gerenciamento do código
+Tecnologia	e Aplicação
+Python:	 Desenvolvimento e lógica do sistema
+n8n: 	Automação de processos
+FastAPI: 	Integração entre sistemas
+GitHub: 	Versionamento e gerenciamento do código
 
 Nossa visão para 2050:
 
