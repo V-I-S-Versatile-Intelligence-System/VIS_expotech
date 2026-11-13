@@ -1,5 +1,3 @@
-
-
 from flask import Flask, jsonify, request
 import core
 
@@ -15,7 +13,6 @@ def estado():
     })
 
 
-# Mudar temperatura
 @app.route("/temperatura", methods=["POST"])
 def temperatura():
     dados = request.get_json()
@@ -23,7 +20,6 @@ def temperatura():
     return jsonify({"ok": True})
 
 
-# Mudar alarme
 @app.route("/alarme", methods=["POST"])
 def alarme():
     dados = request.get_json()
@@ -31,7 +27,6 @@ def alarme():
     return jsonify({"ok": True})
 
 
-# Mudar porta
 @app.route("/porta", methods=["POST"])
 def porta():
     dados = request.get_json()
