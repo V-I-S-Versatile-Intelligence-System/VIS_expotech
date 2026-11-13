@@ -1,31 +1,39 @@
+
+
 from flask import Flask, jsonify, request
 import core
 
 app = Flask(__name__)
 
-
-
+# Mostrar estado da casa
 @app.route("/estado", methods=["GET"])
-def pegar_estado():
-    return jsonify({"temperatura": core.temperatura, "alarme": core.alarme, "porta": core.porta})
+def estado():
+    return jsonify({
+        "temperatura": core.temperatura,
+        "alarme": core.alarme,
+        "porta": core.porta
+    })
 
 
+# Mudar temperatura
 @app.route("/temperatura", methods=["POST"])
-def mudar_temperatura():
+def temperatura():
     dados = request.get_json()
     core.temperatura = dados["temperatura"]
     return jsonify({"ok": True})
 
 
+# Mudar alarme
 @app.route("/alarme", methods=["POST"])
-def mudar_alarme():
+def alarme():
     dados = request.get_json()
     core.alarme = dados["alarme"]
     return jsonify({"ok": True})
 
 
+# Mudar porta
 @app.route("/porta", methods=["POST"])
-def mudar_porta():
+def porta():
     dados = request.get_json()
     core.porta = dados["porta"]
     return jsonify({"ok": True})
