@@ -1,0 +1,211 @@
+{
+  "name": "Baixar planilha de consumo",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "={{ 'consumo-' + $now.format('yyyy-MM-dd-HHmm') + '.xlsx' }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1WqJjotahNvvaJwdsVcExFaIcGs0EAXbv",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "9bd3da54-c3e9-4fb6-8d0d-f230ca77ec23",
+      "name": "Salvar no Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1296,
+        640
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "HxSoMmMDXljJY1KP",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "sendTo": "nicolasdev4730@gmail.com",
+        "subject": "Planilha de consumo",
+        "emailType": "text",
+        "message": "Olá,\n\nSegue em anexo a planilha de consumo.\n\nValor que pode gastar no mês: {{ $('Montar os valores').item.json['Valor que posso gastar esse mês'] }}\nConsumo já gasto no mês: {{ $('Montar os valores').item.json['Consumo já gasto esse mês'] }}\n\nAbraço.",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "id": "5d2ef198-fce6-417f-91e5-e6b39cea833b",
+      "name": "Enviar e-mail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1296,
+        800
+      ],
+      "webhookId": "e844ae99-7d2a-4e70-a1e6-59d5155bbb1f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "IW9RwbQaKKdMiieO",
+          "name": "Gmail account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "path": "consumo-planilha",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "71ef8146-784a-4655-a00b-b42d3776afe1",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        576,
+        640
+      ],
+      "webhookId": "consumo-planilha"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1",
+              "name": "Valor que posso gastar esse mês",
+              "value": "={{ $json.query.maximo || 1122.24 }}",
+              "type": "number"
+            },
+            {
+              "id": "c2",
+              "name": "Consumo já gasto esse mês",
+              "value": "={{ $json.query.gasto || 645.48 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "47df1868-b017-4c66-b206-cd530ae6980e",
+      "name": "Montar os valores1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        816,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "xlsx",
+        "options": {
+          "fileName": "consumo.xlsx"
+        }
+      },
+      "id": "d009d385-6c34-4a0a-97bc-874d5ab2e745",
+      "name": "Criar planilha1",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "binary",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Disposition",
+                "value": "attachment; filename=\"consumo.xlsx\""
+              }
+            ]
+          }
+        }
+      },
+      "id": "2b7228c3-a080-4b63-bf0f-64ba03bb67bb",
+      "name": "Enviar o download1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1296,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Montar os valores1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar os valores1": {
+      "main": [
+        [
+          {
+            "node": "Criar planilha1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar planilha1": {
+      "main": [
+        [
+          {
+            "node": "Enviar o download1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Salvar no Drive",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Enviar e-mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ff37dcca-9e56-4fc2-94eb-7c321d8ede68",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d48e9fe9be3e1c6a2c5d33550fa0ece2541d15e8d5ec46cbb30235e60a904c22"
+  },
+  "nodeGroups": [],
+  "id": "aC3uKbpUeVmqKID3",
+  "tags": []
+}
