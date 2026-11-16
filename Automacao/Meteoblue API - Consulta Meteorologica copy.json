@@ -1,0 +1,99 @@
+{
+  "name": "Meteoblue API - Consulta Meteorologica copy",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://my.meteoblue.com/packages/basic-1h",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "lat",
+              "value": "-23.5505"
+            },
+            {
+              "name": "lon",
+              "value": "-46.6333"
+            },
+            {
+              "name": "apikey",
+              "value": "COLE_SUA_API_KEY_AQUI"
+            },
+            {
+              "name": "format",
+              "value": "json"
+            },
+            {
+              "name": "temperature",
+              "value": "C"
+            },
+            {
+              "name": "windspeed",
+              "value": "km/h"
+            },
+            {
+              "name": "precipitationamount",
+              "value": "mm"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "77e95f3a-d75e-49f7-8dc1-0a07c988c8d4",
+      "name": "Consultar Meteoblue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        272,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "path": "02cb7a6d-0efa-4c59-88e4-6e65efe6f79f",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5ed5c6e7-9b64-441a-960f-57f0ed6be28b",
+      "name": "Webhook",
+      "webhookId": "02cb7a6d-0efa-4c59-88e4-6e65efe6f79f"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Consultar Meteoblue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a0500627-10c4-47ac-81bb-798bfbe0f351",
+  "meta": {
+    "instanceId": "d48e9fe9be3e1c6a2c5d33550fa0ece2541d15e8d5ec46cbb30235e60a904c22"
+  },
+  "nodeGroups": [],
+  "id": "w8LF5t2EhHkUi3LZ",
+  "tags": []
+}
