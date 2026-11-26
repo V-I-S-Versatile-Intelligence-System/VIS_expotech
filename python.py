@@ -49,6 +49,17 @@ def desligar_quarto():
     luz_quarto = False
     print("Luz do quarto desligada.")
 
+def ligar_quarto2():
+    global luz_quarto
+    luz_quarto = True
+    print("Luz do quarto ligada.")
+
+
+def desligar_quarto2():
+    global luz_quarto
+    luz_quarto = False
+    print("Luz do quarto desligada.")
+
 
 def ligar_cozinha():
     global luz_cozinha
@@ -60,6 +71,17 @@ def desligar_cozinha():
     global luz_cozinha
     luz_cozinha = False
     print("Luz da cozinha desligada.")
+
+def ligar_banheiro():
+    global luz_quarto
+    luz_quarto = True
+    print("Luz do banheiro ligada.")
+
+
+def desligar_banheiro():
+    global luz_quarto
+    luz_quarto = False
+    print("Luz do banheiro desligada.")
 
 
 def ligar_ventilador():
@@ -74,16 +96,16 @@ def desligar_ventilador():
     print("Ventilador desligado.")
 
 
-def abrir_porta():
+def abrir_portao():
     global porta
     porta = True
-    print("Porta aberta.")
+    print("Portão aberto.")
 
 
 def fechar_porta():
     global porta
     porta = False
-    print("Porta fechada.")
+    print("Portão fechado.")
 
 
 def ativar_alarme():
@@ -119,11 +141,13 @@ def mudar_temperatura(novo_valor):
 def modo_cinema():
     global luz_sala
     global luz_quarto
+    global luz_quarto2
     global luz_cozinha
     global ventilador
 
     luz_sala = False
     luz_quarto = False
+    luz_quarto2 = False
     luz_cozinha = False
 
     if temperatura >= 25:
@@ -139,11 +163,13 @@ def modo_cinema():
 def modo_boa_noite():
     global luz_sala
     global luz_quarto
+    global luz_quarto2
     global luz_cozinha
     global ventilador
 
     luz_sala = False
     luz_quarto = False
+    luz_quarto2 = False
     luz_cozinha = False
     ventilador = False
 
